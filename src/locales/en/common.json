@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "demo": "Demo",
+    "pricing": "Pricing",
+    "login": "Login",
+    "start": "Start Free"
+  },
+  "hero": {
+    "badge": "Next Generation Business Intelligence",
+    "title1": "Transform Your Data Into",
+    "title2": "Smart Decisions",
+    "title3": "In a Glance",
+    "desc": "Entity Board helps you understand your business performance deeply through instant analytics, AI-powered predictions, and fully customizable dashboards.",
+    "cta_primary": "Start Free Trial",
+    "cta_secondary": "Watch Demo"
+  },
+  "features": {
+    "badge": "Features",
+    "title": "Everything You Need in One Place",
+    "subtitle": "An integrated platform combining AI and ease of use to transform your data into effective decisions"
+  },
+  "footer": {
+    "brand": "Entity Board",
+    "rights": "All rights reserved © 2026 Entity Board"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Login to your account to continue",
+      "email": "Email Address",
+      "password": "Password",
+      "remember": "Remember me",
+      "forgot": "Forgot Password?",
+      "submit": "Sign In",
+      "no_account": "Don't have an account?",
+      "register": "Create account"
+    },
+    "register": {
+      "title": "Create New Account",
+      "subtitle": "Join Entity Board today and start your journey",
+      "name": "Full Name",
+      "email": "Email Address",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "submit": "Create Account",
+      "has_account": "Already have an account?",
+      "login": "Sign In"
+    }
+  }
+}
