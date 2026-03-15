@@ -1,5 +1,7 @@
 'use client';
 
+import { BrandLogoIcon } from '@/components/ui/BrandLogoIcon';
+
 const footerLinks = {
   product: {
     title: 'المنتج',
@@ -48,11 +50,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <a href="#home" className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
-                <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
-                  <path d="M3 3h7v7H3V3zm11 0h7v7h-7V3zm0 11h7v7h-7v-7zm-11 0h7v7H3v-7z"/>
-                </svg>
-              </div>
+              <BrandLogoIcon className="h-9 w-9" />
               <span className="text-xl font-black text-gray-900 dark:text-white">كيان بورد</span>
             </a>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 max-w-xs">

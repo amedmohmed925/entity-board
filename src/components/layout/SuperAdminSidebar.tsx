@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { type MouseEvent, useEffect, useState } from 'react';
+import { BrandLogoIcon } from '@/components/ui/BrandLogoIcon';
 
 type SidebarItem = {
   id: string;
@@ -112,7 +113,7 @@ export function SuperAdminSidebar() {
       <aside className="w-full shrink-0 rounded-3xl border border-slate-200/80 bg-white/90 p-4 dark:border-[#1A2A4A] dark:bg-[#0A1126] lg:w-72">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600/20 text-blue-300">⌘</div>
+            <BrandLogoIcon className="h-9 w-9" />
             <div>
               <p className="text-sm font-bold text-slate-900 dark:text-white">لوحة كيان</p>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">Super Admin</p>

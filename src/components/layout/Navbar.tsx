@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { BrandLogoIcon } from '@/components/ui/BrandLogoIcon';
 
 const navLinks = [
   { href: '/', label: 'الرئيسية' },
@@ -37,9 +38,7 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/" prefetch className="flex items-center gap-2 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
-                <span className="text-white font-black text-xl">K</span>
-              </div>
+              <BrandLogoIcon className="h-10 w-10 transition-transform group-hover:scale-110" />
               <span className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
                 كيان<span className="text-blue-600">بورد</span>
               </span>
