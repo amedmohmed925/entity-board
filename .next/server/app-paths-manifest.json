@@ -1,16 +1,1 @@
-{
-  "/page": "app/page.js",
-  "/features/page": "app/features/page.js",
-  "/demo/page": "app/demo/page.js",
-  "/pricing/page": "app/pricing/page.js",
-  "/owner/billing/page": "app/owner/billing/page.js",
-  "/login/page": "app/login/page.js",
-  "/register/page": "app/register/page.js",
-  "/owner/settings/page": "app/owner/settings/page.js",
-  "/owner/library/page": "app/owner/library/page.js",
-  "/owner/analytics/page": "app/owner/analytics/page.js",
-  "/owner/financials/page": "app/owner/financials/page.js",
-  "/owner/account/page": "app/owner/account/page.js",
-  "/owner/help/page": "app/owner/help/page.js",
-  "/owner/page": "app/owner/page.js"
-}
+{}

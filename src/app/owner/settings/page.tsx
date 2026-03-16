@@ -170,7 +170,7 @@ export default function CompanySettingsPage() {
                   className={`relative w-16 h-9 rounded-full transition-colors duration-300 flex items-center p-1 ${is2FAEnabled ? 'bg-blue-600' : 'bg-slate-200 dark:bg-white/10'}`}
                 >
                    <motion.div 
-                     animate={{ x: is2FAEnabled ? (document?.dir === 'rtl' ? -28 : 28) : 0 }}
+                     animate={{ x: is2FAEnabled ? -28 : 0 }}
                      className="w-7 h-7 bg-white rounded-full shadow-lg"
                    />
                 </button>
