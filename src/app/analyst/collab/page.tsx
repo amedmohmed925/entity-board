@@ -25,6 +25,36 @@ export default function CollaborationPage() {
     setMounted(true);
   }, []);
 
+  const handleInvite = () => {
+    if (!inviteEmail.trim()) return;
+    
+    setIsSending(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      const newMember: AccessMember = {
+        id: Math.random().toString(36).substr(2, 9),
+        name: inviteEmail.split('@')[0],
+        email: inviteEmail,
+        role: inviteRole,
+        avatarBg: ['6366f1', 'ec4899', '8b5cf6', '06b6d4'][Math.floor(Math.random() * 4)]
+      };
+      
+      setAccessList(prev => [newMember, ...prev]);
+      setIsSending(false);
+      setInviteEmail('');
+      setToastMessage('تم إرسال الدعوة بنجاح');
+      
+      setTimeout(() => setToastMessage(''), 3000);
+    }, 1500);
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setToastMessage('تم نسخ الرابط بنجاح');
+    setTimeout(() => setToastMessage(''), 3000);
+  };
+
   return (
     <div className="mx-auto max-w-[1920px] p-0 md:p-3 xl:p-5 h-[calc(100vh-88px)] bg-slate-50 dark:bg-[#050A19]">
         {/* Main Content Area - Mocking a dashboard with a modal overlay */}
