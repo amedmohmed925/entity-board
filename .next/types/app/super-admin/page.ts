@@ -1,4 +1,4 @@
-// File: D:\saas Dashoard\entity-board\src\app\super-admin\page.tsx
+// File: D:\entity-board\src\app\super-admin\page.tsx
 import * as entry from '../../../../src/app/super-admin/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

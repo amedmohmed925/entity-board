@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-* { box-sizing: border-box; padding: 0; margin: 0; }
+* { box-sizing: border-box; padding: 0; margin: 0; 
+font-family: var(--font-cairo), 'Tajawal', sans-serif;
+}
 html {
   scroll-behavior: smooth;
   font-family: var(--font-cairo), 'Tajawal', sans-serif;
@@ -95,67 +97,99 @@ body { background-color: #ffffff; color: #1a1a1a; }
   will-change: transform;
 }
 
-html:not(.dark) .super-admin-theme [class*="bg-[#050A19]"] {
+html:not(.dark) .super-admin-theme [class*="bg-[#050A19]"],
+html:not(.dark) .analyst-theme [class*="bg-[#050A19]"] {
   background-color: #f3f7ff !important;
 }
 
 html:not(.dark) .super-admin-theme [class*="bg-[#080F23]"],
-html:not(.dark) .super-admin-theme [class*="bg-[#0A1126]"] {
+html:not(.dark) .analyst-theme [class*="bg-[#080F23]"],
+html:not(.dark) .super-admin-theme [class*="bg-[#0A1126]"],
+html:not(.dark) .analyst-theme [class*="bg-[#0A1126]"] {
   background-color: #ffffff !important;
 }
 
 html:not(.dark) .super-admin-theme [class*="bg-[#0D1632]"],
+html:not(.dark) .analyst-theme [class*="bg-[#0D1632]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#0A132C]"],
+html:not(.dark) .analyst-theme [class*="bg-[#0A132C]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#0B1430]"],
+html:not(.dark) .analyst-theme [class*="bg-[#0B1430]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#16213A]"],
+html:not(.dark) .analyst-theme [class*="bg-[#16213A]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#1B2847]"],
+html:not(.dark) .analyst-theme [class*="bg-[#1B2847]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#111D3F]"],
+html:not(.dark) .analyst-theme [class*="bg-[#111D3F]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#132042]"],
+html:not(.dark) .analyst-theme [class*="bg-[#132042]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#122041]"],
+html:not(.dark) .analyst-theme [class*="bg-[#122041]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#17274A]"],
+html:not(.dark) .analyst-theme [class*="bg-[#17274A]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#15264A]"],
+html:not(.dark) .analyst-theme [class*="bg-[#15264A]"],
 html:not(.dark) .super-admin-theme [class*="bg-[#142247]"],
-html:not(.dark) .super-admin-theme [class*="bg-[#1C2947]"] {
+html:not(.dark) .analyst-theme [class*="bg-[#142247]"],
+html:not(.dark) .super-admin-theme [class*="bg-[#1C2947]"],
+html:not(.dark) .analyst-theme [class*="bg-[#1C2947]"] {
   background-color: #f8fafc !important;
 }
 
 html:not(.dark) .super-admin-theme [class*="border-[#1A2A4A]"],
+html:not(.dark) .analyst-theme [class*="border-[#1A2A4A]"],
 html:not(.dark) .super-admin-theme [class*="border-[#15203B]"],
-html:not(.dark) .super-admin-theme [class*="border-[#2C406E]"] {
+html:not(.dark) .analyst-theme [class*="border-[#15203B]"],
+html:not(.dark) .super-admin-theme [class*="border-[#2C406E]"],
+html:not(.dark) .analyst-theme [class*="border-[#2C406E]"] {
   border-color: #cbd5e1 !important;
 }
 
-html:not(.dark) .super-admin-theme [class*="text-white"]:not([class*="bg-blue-"]):not([class*="bg-rose-"]):not([class*="bg-orange-"]):not([class*="bg-emerald-"]):not([class*="bg-amber-"]):not([class*="bg-sky-"]):not([class*="from-blue-"]):not([class*="from-violet-"]):not([class*="from-[#2F36FF]"]) {
+html:not(.dark) .super-admin-theme [class*="text-white"]:not([class*="bg-blue-"]):not([class*="bg-rose-"]):not([class*="bg-orange-"]):not([class*="bg-emerald-"]):not([class*="bg-amber-"]):not([class*="bg-sky-"]):not([class*="from-blue-"]):not([class*="from-violet-"]):not([class*="from-[#2F36FF]"]),
+html:not(.dark) .analyst-theme [class*="text-white"]:not([class*="bg-blue-"]):not([class*="bg-rose-"]):not([class*="bg-orange-"]):not([class*="bg-emerald-"]):not([class*="bg-amber-"]):not([class*="bg-sky-"]):not([class*="from-blue-"]):not([class*="from-violet-"]):not([class*="from-[#2F36FF]"]) {
   color: #0f172a !important;
 }
 
-html:not(.dark) .super-admin-theme [class*="text-slate-200"] {
+html:not(.dark) .super-admin-theme [class*="text-slate-200"],
+html:not(.dark) .analyst-theme [class*="text-slate-200"] {
   color: #475569 !important;
 }
 
-html:not(.dark) .super-admin-theme [class*="text-slate-300"] {
+html:not(.dark) .super-admin-theme [class*="text-slate-300"],
+html:not(.dark) .analyst-theme [class*="text-slate-300"] {
   color: #334155 !important;
 }
 
-html:not(.dark) .super-admin-theme [class*="text-slate-400"] {
+html:not(.dark) .super-admin-theme [class*="text-slate-400"],
+html:not(.dark) .analyst-theme [class*="text-slate-400"] {
   color: #64748b !important;
 }
 
-html:not(.dark) .super-admin-theme [class*="text-slate-500"] {
+html:not(.dark) .super-admin-theme [class*="text-slate-500"],
+html:not(.dark) .analyst-theme [class*="text-slate-500"] {
   color: #94a3b8 !important;
 }
 
 html:not(.dark) .super-admin-theme [class*="hover:bg-[#111D3F]"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:bg-[#111D3F]"]:hover,
 html:not(.dark) .super-admin-theme [class*="hover:bg-[#132042]"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:bg-[#132042]"]:hover,
 html:not(.dark) .super-admin-theme [class*="hover:bg-[#17274A]"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:bg-[#17274A]"]:hover,
 html:not(.dark) .super-admin-theme [class*="hover:bg-[#15264A]"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:bg-[#15264A]"]:hover,
 html:not(.dark) .super-admin-theme [class*="hover:bg-[#122041]"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:bg-[#122041]"]:hover,
 html:not(.dark) .super-admin-theme [class*="hover:bg-[#1C2947]"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:bg-[#1C2947]"]:hover,
 html:not(.dark) .super-admin-theme [class*="hover:bg-[#22325A]"]:hover,
-html:not(.dark) .super-admin-theme [class*="hover:bg-[#142247]"]:hover {
+html:not(.dark) .analyst-theme [class*="hover:bg-[#22325A]"]:hover,
+html:not(.dark) .super-admin-theme [class*="hover:bg-[#142247]"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:bg-[#142247]"]:hover {
   background-color: #e2e8f0 !important;
 }
 
-html:not(.dark) .super-admin-theme [class*="hover:text-white"]:hover {
+html:not(.dark) .super-admin-theme [class*="hover:text-white"]:hover,
+html:not(.dark) .analyst-theme [class*="hover:text-white"]:hover {
   color: #0f172a !important;
 }

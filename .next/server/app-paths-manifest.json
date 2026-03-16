@@ -1,16 +1,14 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/demo/page": "app/demo/page.js",
   "/features/page": "app/features/page.js",
+  "/demo/page": "app/demo/page.js",
   "/pricing/page": "app/pricing/page.js",
+  "/analyst/page": "app/analyst/page.js",
+  "/analyst/ai-builder/page": "app/analyst/ai-builder/page.js",
+  "/analyst/chat/page": "app/analyst/chat/page.js",
+  "/analyst/collab/page": "app/analyst/collab/page.js",
+  "/analyst/reports/page": "app/analyst/reports/page.js",
   "/register/page": "app/register/page.js",
-  "/super-admin/page": "app/super-admin/page.js",
-  "/super-admin/plans/page": "app/super-admin/plans/page.js",
-  "/login/page": "app/login/page.js",
-  "/super-admin/users-teams/page": "app/super-admin/users-teams/page.js",
-  "/super-admin/templates/page": "app/super-admin/templates/page.js",
-  "/super-admin/ai/page": "app/super-admin/ai/page.js",
-  "/super-admin/reports/page": "app/super-admin/reports/page.js",
-  "/super-admin/integrations/page": "app/super-admin/integrations/page.js"
+  "/login/page": "app/login/page.js"
 }

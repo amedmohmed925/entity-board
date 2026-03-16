@@ -14,7 +14,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center"
       style={{
         background: isDark
           ? 'linear-gradient(135deg, #3B82F6, #7C3AED)'
@@ -23,10 +23,9 @@ export function ThemeToggle() {
       aria-label="تبديل المظهر"
     >
       <span
-        className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-300 flex items-center justify-center text-xs ${
-          isDark ? 'translate-x-0.5' : '-translate-x-6.5'
+        className={`absolute right-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-300 flex items-center justify-center text-[10px] ${
+          isDark ? '-translate-x-[24px]' : 'translate-x-0'
         }`}
-        style={{ transform: isDark ? 'translateX(2px)' : 'translateX(26px)' }}
       >
         {isDark ? '🌙' : '☀️'}
       </span>

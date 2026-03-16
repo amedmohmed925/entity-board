@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -13,8 +13,12 @@ export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginError, setLoginError] = useState('');
   const fullText = 'لوحة تحكم ذكية لإدارة أعمالك';
-  const demoEmail = 'superadmin@demo.com';
-  const demoPassword = 'SuperAdmin@123';
+  
+  // Credentials map
+  const credentials = {
+    superadmin: { email: 'superadmin@demo.com', password: 'SuperAdmin@123', redirect: '/super-admin' },
+    analyst: { email: 'analyst@demo.com', password: 'Analyst@123', redirect: '/analyst' }
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -48,17 +52,32 @@ export default function LoginPage() {
     setLoginError('');
 
     const normalizedEmail = email.trim().toLowerCase();
-    const normalizedDemoEmail = demoEmail.toLowerCase();
 
-    if (normalizedEmail === normalizedDemoEmail && password === demoPassword) {
+    // Check super admin
+    if (normalizedEmail === credentials.superadmin.email.toLowerCase() && password === credentials.superadmin.password) {
       setIsSubmitting(true);
       setTimeout(() => {
-        router.push('/super-admin');
+        router.push(credentials.superadmin.redirect);
       }, 400);
       return;
     }
 
-    setLoginError('بيانات الدخول غير صحيحة. استخدم بيانات الديمو الموضحة أدناه.');
+    // Check analyst
+    if (normalizedEmail === credentials.analyst.email.toLowerCase() && password === credentials.analyst.password) {
+        setIsSubmitting(true);
+        setTimeout(() => {
+          router.push(credentials.analyst.redirect);
+        }, 400);
+        return;
+    }
+
+    setLoginError('بيانات الدخول غير صحيحة. استخدم بيانات أحد الحسابات التجريبية الموضحة أدناه.');
+  };
+
+  const fillCredentials = (role: 'superadmin' | 'analyst') => {
+      setEmail(credentials[role].email);
+      setPassword(credentials[role].password);
+      setLoginError('');
   };
 
   return (
@@ -137,16 +156,35 @@ export default function LoginPage() {
 
       {/* Login Form Section */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 relative overflow-hidden bg-white dark:bg-[#060B14]">
-        <div className="w-full max-w-md relative z-10">
+        <div className="w-full max-w-xl relative z-10">
           <div className="text-center lg:text-right mb-10" dir="rtl">
             <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-4">مرحباً بك مجدداً</h1>
-            <p className="text-gray-500 dark:text-gray-400 text-lg">تسجيل دخول ديمو مخصص لصفحات Super Admin</p>
+            <p className="text-gray-500 dark:text-gray-400 text-lg">سجل دخولك لتجربة لوحات التحكم المخصصة</p>
           </div>
 
-          <div dir="rtl" className="mb-6 rounded-2xl border border-blue-500/30 bg-blue-500/10 p-4 text-sm text-blue-800 dark:text-blue-300">
-            <p className="font-black mb-2">بيانات دخول الديمو</p>
-            <p className="font-semibold">البريد: {demoEmail}</p>
-            <p className="font-semibold">كلمة المرور: {demoPassword}</p>
+          <div dir="rtl" className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div 
+                onClick={() => fillCredentials('superadmin')}
+                className="rounded-2xl border border-blue-500/30 bg-blue-500/10 p-4 text-sm text-blue-800 dark:text-blue-300 cursor-pointer hover:bg-blue-500/20 transition-colors"
+                title="اضغط لملء الحقول التلقائي"
+            >
+                <p className="font-black mb-2 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                    حساب الـ Super Admin
+                </p>
+                <p className="font-semibold text-xs opacity-80">البريد: superadmin@demo.com</p>
+            </div>
+            <div 
+                onClick={() => fillCredentials('analyst')}
+                className="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-4 text-sm text-purple-800 dark:text-purple-300 cursor-pointer hover:bg-purple-500/20 transition-colors"
+                title="اضغط لملء الحقول التلقائي"
+            >
+                <p className="font-black mb-2 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+                    حساب الـ Analyst
+                </p>
+                <p className="font-semibold text-xs opacity-80">البريد: analyst@demo.com</p>
+            </div>
           </div>
 
           <form className="space-y-6" dir="rtl" onSubmit={handleLogin}>

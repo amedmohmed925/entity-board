@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const pageLabels: Array<{ href: string; label: string }> = [
+  { href: '/super-admin/notifications', label: 'الإشعارات' },
   { href: '/super-admin/integrations', label: 'التكاملات' },
   { href: '/super-admin/reports', label: 'التقارير' },
   { href: '/super-admin/ai', label: 'التحليلات والذكاء الاصطناعي' },
@@ -53,23 +54,24 @@ export function SuperAdminTopbar() {
           </svg>
         </div>
 
-        <button
-          type="button"
+        <Link
+          href="/super-admin/notifications"
           aria-label="الإشعارات"
-          className="relative shrink-0 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-slate-600 transition hover:bg-slate-100 dark:border-[#1A2A4A] dark:bg-[#0D1632] dark:text-slate-300 dark:hover:bg-[#142247]"
+          className="relative shrink-0 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-slate-600 transition hover:bg-slate-100 dark:border-[#1A2A4A] dark:bg-[#0D1632] dark:text-slate-300 dark:hover:bg-[#142247] group"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-5 w-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
           </svg>
-          <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white">
+          <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white animate-pulse">
             3
           </span>
-        </button>
+        </Link>
 
         <ThemeToggle />
 
         <Link
           href="/login"
+          prefetch={true}
           className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm font-bold text-rose-700 transition hover:bg-rose-500/20 dark:text-rose-100"
           aria-label="تسجيل الخروج"
         >
