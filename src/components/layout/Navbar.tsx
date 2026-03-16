@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/features', label: 'المميزات' },
   { href: '/demo', label: 'العرض التجريبي' },
   { href: '/pricing', label: 'الأسعار' },
+  { href: '/contact', label: 'اتصل بنا' },
 ];
 
 export function Navbar() {

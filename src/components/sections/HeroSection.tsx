@@ -1,6 +1,7 @@
-﻿'use client';
+'use client';
 
 import type { CSSProperties } from 'react';
+import { Typewriter } from '@/components/ui/Typewriter';
 
 export function HeroSection() {
   return (
@@ -61,20 +62,16 @@ export function HeroSection() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-gray-900 dark:text-white mb-6">
-              حول بياناتك إلى{' '}
-              <span
-                className="block"
-                style={{
-                  background: 'linear-gradient(135deg, #3B82F6, #7C3AED, #06B6D4)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                قرارات ذكية
-              </span>
-              <span className="text-gray-900 dark:text-white">بلمحة بصر</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-gray-900 dark:text-white mb-6 min-h-[180px] md:min-h-[144px] flex flex-wrap items-center">
+              <span className="text-gray-900 dark:text-white ml-3">حول بياناتك إلى</span>
+              <Typewriter 
+                texts={[
+                  '[قرارات ذكية]{bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent} بلمحة بصر',
+                  '[نجاح مستمر]{bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent} بكل سهولة',
+                  '[تقارير فورية]{bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent} في ثوانٍ'
+                ]}
+                className="pb-1"
+              />
             </h1>
 
             {/* Description */}

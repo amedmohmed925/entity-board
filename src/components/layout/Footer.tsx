@@ -30,7 +30,7 @@ const footerLinks = {
       { label: 'مركز المساعدة', href: '#help' },
       { label: 'سياسة الخصوصية', href: '#privacy' },
       { label: 'شروط الاستخدام', href: '#terms' },
-      { label: 'تواصل معنا', href: '#contact' },
+      { label: 'تواصل معنا', href: '/contact' },
     ],
   },
 };

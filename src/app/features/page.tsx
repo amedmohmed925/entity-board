@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -92,11 +92,11 @@ export default function FeaturesPage() {
           </div>
           
           <h1 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 leading-tight min-h-[160px] md:min-h-[144px]">
-            مميزات مصممة خصيصاً <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-l from-blue-600 to-purple-600">
+            <span className="text-gray-900 dark:text-white">مميزات مصممة</span> <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
               {displayText}
             </span>
-            <span className="inline-block w-1 h-10 md:h-14 bg-blue-600 dark:bg-blue-400 ml-2 animate-[blink_1s_infinite] align-middle" />
+            <span className="inline-block w-1 h-10 md:h-14 bg-blue-600 dark:bg-purple-600 ml-2 animate-[blink_1s_infinite] align-middle" />
           </h1>
           
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in">

@@ -17,7 +17,8 @@ export default function LoginPage() {
   // Credentials map
   const credentials = {
     superadmin: { email: 'superadmin@demo.com', password: 'SuperAdmin@123', redirect: '/super-admin' },
-    analyst: { email: 'analyst@demo.com', password: 'Analyst@123', redirect: '/analyst' }
+    analyst: { email: 'analyst@demo.com', password: 'Analyst@123', redirect: '/analyst' },
+    developer: { email: 'developer@demo.com', password: 'Developer@123', redirect: '/developer' }
   };
 
   useEffect(() => {
@@ -71,10 +72,19 @@ export default function LoginPage() {
         return;
     }
 
+    // Check developer
+    if (normalizedEmail === credentials.developer.email.toLowerCase() && password === credentials.developer.password) {
+        setIsSubmitting(true);
+        setTimeout(() => {
+          router.push(credentials.developer.redirect);
+        }, 400);
+        return;
+    }
+
     setLoginError('بيانات الدخول غير صحيحة. استخدم بيانات أحد الحسابات التجريبية الموضحة أدناه.');
   };
 
-  const fillCredentials = (role: 'superadmin' | 'analyst') => {
+  const fillCredentials = (role: 'superadmin' | 'analyst' | 'developer') => {
       setEmail(credentials[role].email);
       setPassword(credentials[role].password);
       setLoginError('');
@@ -162,7 +172,7 @@ export default function LoginPage() {
             <p className="text-gray-500 dark:text-gray-400 text-lg">سجل دخولك لتجربة لوحات التحكم المخصصة</p>
           </div>
 
-          <div dir="rtl" className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div dir="rtl" className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div 
                 onClick={() => fillCredentials('superadmin')}
                 className="rounded-2xl border border-blue-500/30 bg-blue-500/10 p-4 text-sm text-blue-800 dark:text-blue-300 cursor-pointer hover:bg-blue-500/20 transition-colors"
@@ -170,9 +180,9 @@ export default function LoginPage() {
             >
                 <p className="font-black mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                    حساب الـ Super Admin
+                    Super Admin
                 </p>
-                <p className="font-semibold text-xs opacity-80">البريد: superadmin@demo.com</p>
+                <p className="font-semibold text-[10px] opacity-80 truncate">superadmin@demo.com</p>
             </div>
             <div 
                 onClick={() => fillCredentials('analyst')}
@@ -181,9 +191,20 @@ export default function LoginPage() {
             >
                 <p className="font-black mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                    حساب الـ Analyst
+                    Analyst
                 </p>
-                <p className="font-semibold text-xs opacity-80">البريد: analyst@demo.com</p>
+                <p className="font-semibold text-[10px] opacity-80 truncate">analyst@demo.com</p>
+            </div>
+            <div 
+                onClick={() => fillCredentials('developer')}
+                className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-800 dark:text-emerald-300 cursor-pointer hover:bg-emerald-500/20 transition-colors"
+                title="اضغط لملء الحقول التلقائي"
+            >
+                <p className="font-black mb-2 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    Developer
+                </p>
+                <p className="font-semibold text-[10px] opacity-80 truncate">developer@demo.com</p>
             </div>
           </div>
 

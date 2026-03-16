@@ -1,6 +1,7 @@
-﻿import { Cairo } from "next/font/google";
+import { Cairo } from "next/font/google";
 import "../styles/globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
+import { ToastProvider } from "@/components/ui/Toast";
 import { PublicRouteTransition } from "@/components/layout/PublicRouteTransition";
 
 const cairo = Cairo({ 
@@ -24,8 +25,10 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className={`${cairo.variable} ${cairo.className} bg-white dark:bg-[#060B14] transition-colors duration-300 min-h-screen relative`}>
         <ThemeProvider>
-          <PublicRouteTransition />
-          {children}
+          <ToastProvider>
+            <PublicRouteTransition />
+            {children}
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>
