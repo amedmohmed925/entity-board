@@ -13,6 +13,18 @@ const pageLabels: Array<{ href: string; label: string; exact?: boolean }> = [
   { href: '/owner/financials', label: 'التقارير المالية' },
   { href: '/owner/account', label: 'إعدادات الحساب' },
   { href: '/owner/help', label: 'مركز المساعدة' },
+  { href: '/analyst/prep', label: 'تجهيز البيانات' },
+  { href: '/analyst/builder', label: 'بناء اللوحات' },
+  { href: '/analyst/ai-builder', label: 'الذكاء الاصطناعي' },
+  { href: '/analyst/chat', label: 'التحدث مع البيانات' },
+  { href: '/analyst/collab', label: 'التعاون' },
+  { href: '/analyst/reports', label: 'التقارير والتصدير' },
+  { href: '/analyst', label: 'مصادر البيانات', exact: true },
+  { href: '/developer/api-keys', label: 'مفاتيح الـ API' },
+  { href: '/developer/webhooks', label: 'الويبهوك' },
+  { href: '/developer/logs', label: 'سجل النشاط' },
+  { href: '/developer/docs', label: 'التوثيق التقني' },
+  { href: '/developer', label: 'مركز المطورين', exact: true },
   { href: '/owner', label: 'لوحة القيادة التنفيذية', exact: true },
 ];
 

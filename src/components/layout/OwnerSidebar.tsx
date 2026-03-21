@@ -12,97 +12,197 @@ type SidebarItem = {
   icon?: React.ReactNode;
 };
 
-const sidebarItems: SidebarItem[] = [
-  { 
-    id: 'overview', 
-    label: 'نظرة عامة', 
-    href: '/owner',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    )
+type SidebarSection = {
+  id: string;
+  title: string;
+  items: SidebarItem[];
+};
+
+const sidebarSections: SidebarSection[] = [
+  {
+    id: 'management',
+    title: 'الإدارة والمالية',
+    items: [
+      { 
+        id: 'overview', 
+        label: 'نظرة عامة', 
+        href: '/owner',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        )
+      },
+      { 
+        id: 'team', 
+        label: 'إدارة الفريق', 
+        href: '/owner/team',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        )
+      },
+      { 
+        id: 'billing', 
+        label: 'الاشتراكات والفواتير', 
+        href: '/owner/billing',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2-2V19a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      { 
+        id: 'financials', 
+        label: 'التقارير المالية', 
+        href: '/owner/financials',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.1 0 2 .9 2 2v1c0 1.1-.9 2-2 2s-2-.9-2-2V7c0-1.1.9-2 2-2m0 0V3m0 18v-2" />
+          </svg>
+        )
+      },
+    ]
   },
-  { 
-    id: 'team', 
-    label: 'إدارة الفريق', 
-    href: '/owner/team',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-    )
+  {
+    id: 'analysis',
+    title: 'أدوات التحليل الذكي',
+    items: [
+      { 
+        id: 'connectors', 
+        label: 'مصادر البيانات', 
+        href: '/analyst',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+          </svg>
+        )
+      },
+      { 
+        id: 'dashboard-builder', 
+        label: 'بناء اللوحات', 
+        href: '/analyst/builder',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z" />
+          </svg>
+        )
+      },
+      {
+        id: 'ai-builder',
+        label: 'توليد بالذكاء الاصطناعي',
+        href: '/analyst/ai-builder',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        )
+      },
+      {
+        id: 'chat',
+        label: 'التحدث مع البيانات',
+        href: '/analyst/chat',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+        )
+      },
+      {
+        id: 'reports',
+        label: 'التقارير والتصدير',
+        href: '/analyst/reports',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        )
+      }
+    ]
   },
-  { 
-    id: 'billing', 
-    label: 'الاشتراكات والفواتير', 
-    href: '/owner/billing',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2-2V19a2 2 0 002 2z" />
-      </svg>
-    )
+  {
+    id: 'technical',
+    title: 'الأدوات التقنية',
+    items: [
+      { 
+        id: 'api-keys', 
+        label: 'مفاتيح الـ API', 
+        href: '/developer/api-keys',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+          </svg>
+        )
+      },
+      { 
+        id: 'webhooks', 
+        label: 'الويبهوك (Webhooks)', 
+        href: '/developer/webhooks',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        )
+      },
+      { 
+        id: 'logs', 
+        label: 'سجل النشاط والاخطاء', 
+        href: '/developer/logs',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1.01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        )
+      },
+    ]
   },
-  { 
-    id: 'settings', 
-    label: 'إعدادات الشركة والهوية', 
-    href: '/owner/settings',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    )
-  },
-  { 
-    id: 'library', 
-    label: 'مكتبة اللوحات', 
-    href: '/owner/library',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-      </svg>
-    )
-  },
-  { 
-    id: 'analytics', 
-    label: 'التحليلات المتقدمة', 
-    href: '/owner/analytics',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    )
-  },
-  { 
-    id: 'financials', 
-    label: 'التقارير المالية', 
-    href: '/owner/financials',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3 1.343 3 3-1.343 3-3 3m0-12c1.1 0 2 .9 2 2v1c0 1.1-.9 2-2 2s-2-.9-2-2V7c0-1.1.9-2 2-2m0 0V3m0 18v-2" />
-      </svg>
-    )
-  },
-  { 
-    id: 'account-settings', 
-    label: 'إعدادات الحساب', 
-    href: '/owner/account',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-      </svg>
-    )
-  },
-  { 
-    id: 'help', 
-    label: 'مركز المساعدة', 
-    href: '/owner/help',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-    )
-  },
+  {
+    id: 'settings_help',
+    title: 'الإعدادات والدعم',
+    items: [
+      { 
+        id: 'settings', 
+        label: 'إعدادات الشركة والهوية', 
+        href: '/owner/settings',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        )
+      },
+      { 
+        id: 'library', 
+        label: 'مكتبة اللوحات', 
+        href: '/owner/library',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+          </svg>
+        )
+      },
+      { 
+        id: 'account-settings', 
+        label: 'إعدادات الحساب', 
+        href: '/owner/account',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        )
+      },
+      { 
+        id: 'help', 
+        label: 'مركز المساعدة', 
+        href: '/owner/help',
+        icon: (
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        )
+      },
+    ]
+  }
 ];
 
 function RouteTransitionOverlay() {
@@ -169,35 +269,46 @@ export function OwnerSidebar() {
           </button>
         </div>
 
-        <nav className="space-y-2 flex-1 w-full flex flex-col items-center">
-          {sidebarItems.map((item) => {
-            const isActive = item.href === '/owner' 
-              ? pathname === '/owner' 
-              : pathname.startsWith(item.href || '');
+        <nav className="space-y-6 flex-1 w-full flex flex-col">
+          {sidebarSections.map((section) => (
+            <div key={section.id} className="space-y-2">
+              {!isCollapsed && (
+                <p className="px-4 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                  {section.title}
+                </p>
+              )}
+              <div className="space-y-1">
+                {section.items.map((item) => {
+                  const isActive = item.href === '/owner' 
+                    ? pathname === '/owner' 
+                    : pathname.startsWith(item.href || '');
 
-            return (
-              <Link
-                key={item.id}
-                href={item.href || '#'}
-                prefetch
-                onClick={(event) => item.href && handleNavClick(event, item.href)}
-                className={`group w-full flex items-center rounded-xl p-3 text-sm font-semibold transition ${isCollapsed ? 'justify-center' : 'gap-3 px-4'} ${
-                  isActive
-                    ? 'bg-blue-50 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-500/30'
-                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white border border-transparent'
-                }`}
-                title={isCollapsed ? item.label : undefined}
-              >
-                <div className="shrink-0 flex items-center justify-center">{item.icon}</div>
-                {!isCollapsed && <span className="whitespace-nowrap">{item.label}</span>}
-                {!isCollapsed && isActive && (
-                  <svg className="h-4 w-4 mr-auto text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-                  </svg>
-                )}
-              </Link>
-            );
-          })}
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.href || '#'}
+                      prefetch
+                      onClick={(event) => item.href && handleNavClick(event, item.href)}
+                      className={`group w-full flex items-center rounded-xl p-2.5 text-sm font-semibold transition ${isCollapsed ? 'justify-center' : 'gap-3 px-4'} ${
+                        isActive
+                          ? 'bg-blue-50 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-500/30'
+                          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white border border-transparent'
+                      }`}
+                      title={isCollapsed ? item.label : undefined}
+                    >
+                      <div className="shrink-0 flex items-center justify-center">{item.icon}</div>
+                      {!isCollapsed && <span className="whitespace-nowrap">{item.label}</span>}
+                      {!isCollapsed && isActive && (
+                        <svg className="h-4 w-4 mr-auto text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </nav>
 
         {!isCollapsed && (

@@ -19,7 +19,8 @@ export default function LoginPage() {
     superadmin: { email: 'superadmin@demo.com', password: 'SuperAdmin@123', redirect: '/super-admin' },
     analyst: { email: 'analyst@demo.com', password: 'Analyst@123', redirect: '/analyst' },
     developer: { email: 'developer@demo.com', password: 'Developer@123', redirect: '/developer' },
-    owner: { email: 'owner@demo.com', password: 'Owner@123', redirect: '/owner' }
+    owner: { email: 'owner@demo.com', password: 'Owner@123', redirect: '/owner' },
+    viewer: { email: 'viewer@demo.com', password: 'Viewer@123', redirect: '/viewer' }
   };
 
   useEffect(() => {
@@ -91,10 +92,19 @@ export default function LoginPage() {
         return;
     }
 
+    // Check viewer
+    if (normalizedEmail === credentials.viewer.email.toLowerCase() && password === credentials.viewer.password) {
+        setIsSubmitting(true);
+        setTimeout(() => {
+            router.push(credentials.viewer.redirect);
+        }, 400);
+        return;
+    }
+
     setLoginError('بيانات الدخول غير صحيحة. استخدم بيانات أحد الحسابات التجريبية الموضحة أدناه.');
   };
 
-  const fillCredentials = (role: 'superadmin' | 'analyst' | 'developer' | 'owner') => {
+  const fillCredentials = (role: 'superadmin' | 'analyst' | 'developer' | 'owner' | 'viewer') => {
       setEmail(credentials[role].email);
       setPassword(credentials[role].password);
       setLoginError('');
@@ -182,50 +192,39 @@ export default function LoginPage() {
             <p className="text-gray-500 dark:text-gray-400 text-lg">سجل دخولك لتجربة لوحات التحكم المخصصة</p>
           </div>
 
-          <div dir="rtl" className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div dir="rtl" className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div 
                 onClick={() => fillCredentials('superadmin')}
                 className="rounded-2xl border border-blue-500/30 bg-blue-500/10 p-4 text-sm text-blue-800 dark:text-blue-300 cursor-pointer hover:bg-blue-500/20 transition-colors"
-                title="اضغط لملء الحقول التلقائي"
+                title="Super Admin"
             >
-                <p className="font-black mb-2 flex items-center gap-2">
+                <p className="font-black mb-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                    Super Admin
+                    إدارة النظام
                 </p>
-                <p className="font-semibold text-[10px] opacity-80 truncate">superadmin@demo.com</p>
-            </div>
-            <div 
-                onClick={() => fillCredentials('analyst')}
-                className="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-4 text-sm text-purple-800 dark:text-purple-300 cursor-pointer hover:bg-purple-500/20 transition-colors"
-                title="اضغط لملء الحقول التلقائي"
-            >
-                <p className="font-black mb-2 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                    Analyst
-                </p>
-                <p className="font-semibold text-[10px] opacity-80 truncate">analyst@demo.com</p>
-            </div>
-            <div 
-                onClick={() => fillCredentials('developer')}
-                className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-800 dark:text-emerald-300 cursor-pointer hover:bg-emerald-500/20 transition-colors"
-                title="اضغط لملء الحقول التلقائي"
-            >
-                <p className="font-black mb-2 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    Developer
-                </p>
-                <p className="font-semibold text-[10px] opacity-80 truncate">developer@demo.com</p>
+                <p className="font-semibold text-[9px] opacity-70 truncate">superadmin@demo.com</p>
             </div>
             <div 
                 onClick={() => fillCredentials('owner')}
                 className="rounded-2xl border border-blue-600/30 bg-blue-600/10 p-4 text-sm text-blue-800 dark:text-blue-300 cursor-pointer hover:bg-blue-600/20 transition-colors"
-                title="اضغط لملء الحقول التلقائي"
+                title="Owner"
             >
-                <p className="font-black mb-2 flex items-center gap-2">
+                <p className="font-black mb-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                    Owner
+                    صاحب العمل
                 </p>
-                <p className="font-semibold text-[10px] opacity-80 truncate">owner@demo.com</p>
+                <p className="font-semibold text-[9px] opacity-70 truncate">owner@demo.com</p>
+            </div>
+            <div 
+                onClick={() => fillCredentials('viewer')}
+                className="rounded-2xl border border-slate-500/30 bg-slate-500/10 p-4 text-sm text-slate-800 dark:text-slate-300 cursor-pointer hover:bg-slate-500/20 transition-colors"
+                title="Viewer"
+            >
+                <p className="font-black mb-1 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-slate-500"></span>
+                    المشاهد
+                </p>
+                <p className="font-semibold text-[9px] opacity-70 truncate">viewer@demo.com</p>
             </div>
           </div>
 
