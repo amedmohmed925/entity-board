@@ -1,11 +1,21 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/components/providers/AuthContext';
+import { authApi } from '@/api/auth';
+import { useToast } from '@/components/ui/Toast';
 
 export default function RegisterPage() {
   const [mounted, setMounted] = useState(false);
   const [displayText, setDisplayText] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
+  const { setRegistrationEmail } = useAuth();
+  const router = useRouter();
+  const { showToast } = useToast();
+
   const fullText = 'ابدأ رحلتك في تحويل البيانات إلى قرارات';
 
   useEffect(() => {
@@ -32,6 +42,22 @@ export default function RegisterPage() {
     const initialTimeout = setTimeout(animate, 500);
     return () => clearTimeout(initialTimeout);
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await authApi.register(formData);
+      setRegistrationEmail(formData.email);
+      showToast('تم إنشاء الحساب بنجاح. يرجى تفعيل البريد الإلكتروني', 'success');
+      router.push('/verify-email');
+    } catch (error: any) {
+      showToast(error.response?.data?.message || 'فشل إنشاء الحساب. يرجى المحاولة مرة أخرى', 'error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -102,7 +128,7 @@ export default function RegisterPage() {
             <p className="text-gray-500 dark:text-gray-400 text-lg">ابدأ تجربتك المجانية اليوم (لا تتطلب بطاقة ائتمان)</p>
           </div>
 
-          <form className="space-y-4" dir="rtl">
+          <form className="space-y-5" dir="rtl" onSubmit={handleSubmit}>
             <button
               type="button"
               className="w-full flex items-center justify-center gap-3 px-4 py-4 border border-gray-200 dark:border-white/10 rounded-2xl bg-white dark:bg-white/5 text-gray-700 dark:text-white font-bold hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 group"
@@ -122,58 +148,55 @@ export default function RegisterPage() {
               <div className="flex-grow border-t border-gray-200 dark:border-white/10"></div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-5">
                 <div className="space-y-2">
                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mr-1">الاسم بالكامل</label>
                    <input
                     type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-600 outline-none transition-all"
-                    placeholder="أحمد محمد"
+                    placeholder="مثل: أحمد محمد"
                    />
                 </div>
+
                 <div className="space-y-2">
-                   <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mr-1">اسم الشركة</label>
-                   <input
-                    type="text"
+                  <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mr-1">البريد الإلكتروني للعمل</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-600 outline-none transition-all"
-                    placeholder="اسم شركتك"
-                   />
+                    placeholder="name@company.com"
+                  />
                 </div>
-            </div>
 
-            <div className="space-y-2">
-              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mr-1">البريد الإلكتروني للعمل</label>
-              <input
-                type="email"
-                className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-600 outline-none transition-all"
-                placeholder="name@company.com"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                   <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mr-1">حجم الفريق</label>
-                   <select className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-600 outline-none appearance-none transition-all">
-                        <option>1-10 موظفين</option>
-                        <option>11-50 موظف</option>
-                        <option>51-200 موظف</option>
-                        <option>أكثر من 200</option>
-                   </select>
-                </div>
                 <div className="space-y-2">
                     <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mr-1">كلمة المرور</label>
                     <input
                         type="password"
+                        required
+                        value={formData.password}
+                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-600 outline-none transition-all"
-                        placeholder=""
+                        placeholder="أدخل كلمة مرور قوية"
                     />
                 </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-4 rounded-2xl bg-gradient-to-l from-purple-600 to-blue-600 text-white font-black text-lg transition-all transform hover:-translate-y-1"
+              disabled={isLoading}
+              className="w-full py-4 rounded-2xl bg-gradient-to-l from-purple-600 to-blue-600 text-white font-black text-lg transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
+              {isLoading && (
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              )}
               ابدأ الآن مجاناً
             </button>
           </form>

@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useAuth } from '@/components/providers/AuthContext';
+import { authApi } from '@/api/auth';
+import { useToast } from '@/components/ui/Toast';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,7 +14,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginError, setLoginError] = useState('');
+  const { login: authLogin } = useAuth();
+  const { showToast } = useToast();
   const fullText = 'لوحة تحكم ذكية لإدارة أعمالك';
   
   // Credentials map
@@ -50,64 +54,47 @@ export default function LoginPage() {
 
   if (!mounted) return null;
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoginError('');
+    setIsSubmitting(true);
 
-    const normalizedEmail = email.trim().toLowerCase();
+    try {
+      const response = await authApi.login({ email, password });
+      
+      const { user, token } = response.data;
+      
+      // Store in auth context
+      authLogin(user, token);
+      
+      showToast('تم تسجيل الدخول بنجاح', 'success');
 
-    // Check super admin
-    if (normalizedEmail === credentials.superadmin.email.toLowerCase() && password === credentials.superadmin.password) {
-      setIsSubmitting(true);
+      // Role-based redirection
+      const roleRedirects: Record<string, string> = {
+        'SuperAdmin': '/super-admin',
+        'Analyst': '/analyst',
+        'Developer': '/developer',
+        'Owner': '/owner',
+        'Viewer': '/viewer'
+      };
+
+      const redirectPath = roleRedirects[user.role] || '/owner';
+      
       setTimeout(() => {
-        router.push(credentials.superadmin.redirect);
-      }, 400);
-      return;
+        router.push(redirectPath);
+      }, 500);
+      
+    } catch (error: any) {
+      console.error('Login error:', error);
+      const message = error.response?.data?.message || 'بيانات الدخول غير صحيحة';
+      showToast(message, 'error');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Check analyst
-    if (normalizedEmail === credentials.analyst.email.toLowerCase() && password === credentials.analyst.password) {
-        setIsSubmitting(true);
-        setTimeout(() => {
-          router.push(credentials.analyst.redirect);
-        }, 400);
-        return;
-    }
-
-    // Check developer
-    if (normalizedEmail === credentials.developer.email.toLowerCase() && password === credentials.developer.password) {
-        setIsSubmitting(true);
-        setTimeout(() => {
-          router.push(credentials.developer.redirect);
-        }, 400);
-        return;
-    }
-
-    // Check owner
-    if (normalizedEmail === credentials.owner.email.toLowerCase() && password === credentials.owner.password) {
-        setIsSubmitting(true);
-        setTimeout(() => {
-          router.push(credentials.owner.redirect);
-        }, 400);
-        return;
-    }
-
-    // Check viewer
-    if (normalizedEmail === credentials.viewer.email.toLowerCase() && password === credentials.viewer.password) {
-        setIsSubmitting(true);
-        setTimeout(() => {
-            router.push(credentials.viewer.redirect);
-        }, 400);
-        return;
-    }
-
-    setLoginError('بيانات الدخول غير صحيحة. استخدم بيانات أحد الحسابات التجريبية الموضحة أدناه.');
   };
 
   const fillCredentials = (role: 'superadmin' | 'analyst' | 'developer' | 'owner' | 'viewer') => {
       setEmail(credentials[role].email);
       setPassword(credentials[role].password);
-      setLoginError('');
   };
 
   return (
@@ -277,9 +264,6 @@ export default function LoginPage() {
               />
             </div>
 
-            {loginError && (
-              <p className="text-sm font-bold text-red-500 dark:text-red-400">{loginError}</p>
-            )}
 
             <button
               type="submit"

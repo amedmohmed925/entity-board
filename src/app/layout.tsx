@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import { ToastProvider } from "@/components/ui/Toast";
 import { PublicRouteTransition } from "@/components/layout/PublicRouteTransition";
+import { AuthProvider } from "@/components/providers/AuthContext";
 
 const cairo = Cairo({ 
   subsets: ["arabic", "latin"],
@@ -25,10 +26,12 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className={`${cairo.variable} ${cairo.className} bg-white dark:bg-[#060B14] transition-colors duration-300 min-h-screen relative`}>
         <ThemeProvider>
-          <ToastProvider>
-            <PublicRouteTransition />
-            {children}
-          </ToastProvider>
+          <AuthProvider>
+            <ToastProvider>
+              <PublicRouteTransition />
+              {children}
+            </ToastProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
