@@ -33,7 +33,7 @@ export default function OnboardingPage() {
     try {
       await workspaceApi.createWorkspace(formData);
       showToast('تم إنشاء مساحة العمل بنجاح!', 'success');
-      router.push('/owner/dashboard');
+      router.push('/owner');
     } catch (error: any) {
       showToast(error.response?.data?.message || 'فشل إنشاء مساحة العمل', 'error');
     } finally {

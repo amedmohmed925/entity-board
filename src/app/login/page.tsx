@@ -68,16 +68,20 @@ export default function LoginPage() {
       
       showToast('تم تسجيل الدخول بنجاح', 'success');
 
-      // Role-based redirection
-      const roleRedirects: Record<string, string> = {
-        'SuperAdmin': '/super-admin',
-        'Analyst': '/analyst',
-        'Developer': '/developer',
-        'Owner': '/owner',
-        'Viewer': '/viewer'
-      };
+      // Role-based redirection logic
+      let redirectPath = '/owner';
 
-      const redirectPath = roleRedirects[user.role] || '/owner';
+      if (user.role === 'SuperAdmin') {
+        redirectPath = '/super-admin';
+      } else if (user.role === 'Owner') {
+        // If owner has no workspace, send to onboarding
+        redirectPath = user.workspaceId ? '/owner' : '/onboarding';
+      } else if (user.role === 'Analyst' || user.role === 'Developer') {
+        // Consolidation: redirect to owner pages (or their specific one if still separate)
+        redirectPath = '/owner';
+      } else if (user.role === 'Viewer') {
+        redirectPath = '/viewer';
+      }
       
       setTimeout(() => {
         router.push(redirectPath);
